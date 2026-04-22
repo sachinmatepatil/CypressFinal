@@ -3,6 +3,9 @@
 describe("Contact us form", () => {
     it("Should be able to submit form successfully", () => {
         cy.visit("https://www.webdriveruniversity.com/Contact-Us/contactus.html")
+        cy.document().should("have.property", "charset").and("eq", "UTF-8")
+        cy.title().should("include", "WebDriver | Contact Us")
+        cy.url().should("eq", "https://www.webdriveruniversity.com/Contact-Us/contactus.html")
         cy.get("input[name='first_name']").type('Sachin')
         cy.get("input[name='last_name']").type('Mate')
         cy.get("input[name='email']").type("sachin.mate@example.com")
@@ -10,7 +13,7 @@ describe("Contact us form", () => {
         cy.get("input[type='submit']").click()
         cy.get("h1").should("have.text","Thank You for your Message!")
     }),
-    it.only("show error message when form is submitted with empty fields", () => {
+    it("show error message when form is submitted with empty fields", () => {
         cy.visit("https://www.webdriveruniversity.com/Contact-Us/contactus.html")
         cy.get("input[type='submit']").click()
         cy.get("body").should("contain.text","Error: all fields are required")
