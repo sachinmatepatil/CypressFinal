@@ -12,5 +12,5 @@ describe('Radio buttons example test', () => {
         cy.get('#radio-buttons').find("input[type='radio']").each(($el) => {
             cy.wrap($el).check().should('be.checked')
 })
-    })
+})
 })
